@@ -4,6 +4,7 @@ import random
 import math
 
 # Lógica del juego
+# verificacion si alguien gano o empate
 def check_winner(board):
     win_conditions = [
         [0,1,2], [3,4,5], [6,7,8],
@@ -19,6 +20,7 @@ def check_winner(board):
     return None
 
 # Algoritmo Minimax puro (IA perfecta)
+#un algoritmo que simula la posibles jugadas y evalua el mejor movimineto para ganar o empatar
 def minimax(board, depth, is_maximizing):
     winner = check_winner(board)
     if winner == "X":
@@ -46,7 +48,8 @@ def minimax(board, depth, is_maximizing):
                 board[i] = " "
                 best_score = min(score, best_score)
         return best_score
-
+#mejor jugada de la IA usando el algoritmo minimax
+#la IA siempre jugara de manera perfecta, no comete errores
 def best_move_minimax(board):
     best_score = -math.inf
     move = -1
@@ -59,7 +62,9 @@ def best_move_minimax(board):
                 best_score = score
                 move = i
     return move
-
+# Movimiento aleatorio de la IA
+# la IA jugara de manera aleatoria, cometiendo errores
+# esto es para simular una IA menos inteligente
 def random_ai_move(board):
     available = [i for i in range(9) if board[i] == " "]
     return random.choice(available)
